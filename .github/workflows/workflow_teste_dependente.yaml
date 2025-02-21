@@ -2,9 +2,7 @@ name: Teste Dependente
 
 on:
   workflow_run:
-    workflows: ["Teste da Matrix"]
-    types: 
-      - completed
+    workflows: ["MatrixTest"]
 
 jobs:
   triggado:
