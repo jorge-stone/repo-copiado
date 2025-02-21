@@ -10,7 +10,7 @@ jobs:
   setup-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.repository_type.json_properties.outputs }}
+      matrix: ${{ steps.json_properties.outputs }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,7 +18,7 @@ jobs:
           persist-credentials: false
 
       - name: get specified property
-        id: repository_type
+        id: json_properties
         uses: ActionsTools/read-json-action@main
         with:
           file_path: "buildfile.json"
