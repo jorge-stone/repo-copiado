@@ -16,12 +16,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-          path: setup
 
       - id: set-matrix
         run: | 
-          ls setup/
-          echo matrix=$(cat setup/.github/buildfile.json) >> $GITHUB_OUTPUT
+          echo matrix=$(cat .github/workflows/buildfile.json) >> $GITHUB_OUTPUT
 
   build:
     needs: setup-matrix
