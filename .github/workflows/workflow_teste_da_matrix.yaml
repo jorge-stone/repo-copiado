@@ -20,7 +20,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - id: set-matrix
-        run: cat buildfile.json >> $GITHUB_OUTPUT
+        run: cat "buildfile.json" >> $GITHUB_OUTPUT
   build:
     name: Build
     needs: setup-matrix
