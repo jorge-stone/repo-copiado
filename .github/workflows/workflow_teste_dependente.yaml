@@ -1,9 +1,12 @@
-name: Teste Dependente
+name: Teste Dependente 2
+run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${{ github.base_ref }} by @${{ github.actor }} - ${{ github.event.pull_request.title }}
 
 on:
   workflow_run:
     workflows: 
       - MatrixTest
+    types:
+      - completed
 
 jobs:
   triggado:
