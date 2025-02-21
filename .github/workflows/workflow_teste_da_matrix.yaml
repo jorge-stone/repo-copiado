@@ -12,6 +12,9 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
       - id: set-matrix
         run: cat buildfile.json >> $GITHUB_OUTPUT
   build:
