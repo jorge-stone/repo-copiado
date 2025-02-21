@@ -4,7 +4,7 @@ run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${
 on:
   workflow_run:
     workflows: 
-      - MatrixTest
+      - workflow_teste_da_matrix.yaml
     types:
       - completed
 
