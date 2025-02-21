@@ -10,17 +10,17 @@ jobs:
   setup-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           persist-credentials: false
 
-     - id: set-matrix
-       run: | 
-        echo matrix=$(cat buildfile.json | jq -c | jq -R) >> $GITHUB_OUTPUT
-        
+      - id: set-matrix
+        run: | 
+          echo matrix=$(cat buildfile.json | jq -c | jq -R) >> $GITHUB_OUTPUT
+
   build:
     name: Build
     needs: setup-matrix
