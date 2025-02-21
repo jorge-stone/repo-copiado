@@ -2,7 +2,8 @@ name: Teste Dependente
 
 on:
   workflow_run:
-    workflows: [MatrixTest]
+    workflows: 
+      - MatrixTest
 
 jobs:
   triggado:
