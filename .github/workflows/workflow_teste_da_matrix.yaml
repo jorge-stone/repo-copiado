@@ -27,7 +27,7 @@ jobs:
       fail-fast: true
       matrix: ${{ fromJSON(needs.setup-matrix.outputs.matrix) }}
     name: Build ${{ matrix.app }}
-    uses: ./.github/actions/teste_da_matrix.yaml
+    uses: ./.github/workflows/actions/teste_da_matrix.yaml
     with:
       app: ${{ matrix.app }}
       registry_name: ${{ matrix.registry_name }}
