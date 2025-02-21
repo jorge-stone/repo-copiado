@@ -17,9 +17,10 @@ jobs:
         with:
           persist-credentials: false
 
-     - name: Build Matrix
-       id: set-matrix
-       run: echo matrix=$(cat buildfile.json | jq -c | jq -R) >> $GITHUB_OUTPUT
+     - id: set-matrix
+       run: | 
+        echo matrix=$(cat buildfile.json | jq -c | jq -R) >> $GITHUB_OUTPUT
+        
   build:
     name: Build
     needs: setup-matrix
