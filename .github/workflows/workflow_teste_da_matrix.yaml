@@ -10,21 +10,16 @@ jobs:
   setup-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.json_properties.outputs }}
+      matrix: ${{ steps.set-matrix.outputs }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           persist-credentials: false
 
-      - name: get specified property
-        id: json_properties
-        uses: ActionsTools/read-json-action@main
-        with:
-          file_path: "buildfile.json"
-
-      - run: |
-          echo ${{steps.json_properties.outputs}}
+     - name: Build Matrix
+       id: set-matrix
+       run: echo matrix=$(cat buildfile.json | jq -c | jq -R) >> $GITHUB_OUTPUT
   build:
     name: Build
     needs: setup-matrix
