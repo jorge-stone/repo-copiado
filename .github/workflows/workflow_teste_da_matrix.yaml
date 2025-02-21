@@ -10,17 +10,12 @@ jobs:
   setup-matrix:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix: ${{ steps.repository_type.json_properties.outputs }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - id: set-matrix
-        run: cat "buildfile.json" >> $GITHUB_OUTPUT
 
       - name: get specified property
         id: repository_type
