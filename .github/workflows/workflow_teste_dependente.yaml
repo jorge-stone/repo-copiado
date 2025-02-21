@@ -1,0 +1,17 @@
+name: Teste Dependente
+run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${{ github.base_ref }} by @${{ github.actor }} - ${{ github.event.pull_request.title }}
+
+on:
+  workflow_run:
+    workflows: ["Teste da Matrix"]
+    types: 
+      - completed
+
+jobs:
+  if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  triggado:
+    runs-on: ubuntu-latest
+    steps:
+      - id: print-success
+        run: | 
+          echo "SUCESSO! > ${{github.event}}"
