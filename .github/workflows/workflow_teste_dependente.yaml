@@ -4,13 +4,14 @@ run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${
 on:
   workflow_run:
     workflows: 
-      - workflow_teste_da_matrix.yaml
+      - MatrixTest
     types:
       - completed
 
 jobs:
   triggado:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - id: print-success
         run: | 
