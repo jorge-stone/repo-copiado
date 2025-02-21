@@ -21,6 +21,15 @@ jobs:
           ls ${{ github.workspace }}
       - id: set-matrix
         run: cat "buildfile.json" >> $GITHUB_OUTPUT
+
+      - name: get specified property
+        id: repository_type
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: "buildfile.json"
+
+      - run: |
+          echo ${{steps.json_properties.outputs}}
   build:
     name: Build
     needs: setup-matrix
