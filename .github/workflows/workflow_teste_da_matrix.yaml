@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: small-runner
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
