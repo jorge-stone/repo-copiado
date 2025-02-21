@@ -7,11 +7,19 @@ on:
       - "main"
 
 jobs:
+  setup-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        run: cat ${{ github.workspace }}/buildfile.json >> $GITHUB_OUTPUT
   build:
     name: Build
+    needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
-      matrix:
+      matrix: ${{ fromJSON(needs.setup-matrix.outputs.matrix) }}
         include:
           - registry_name: "bank-banking-debito-automatico-api"
             chart_path: "chart/api/banking-debito-automatico-api"

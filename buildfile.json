@@ -1,0 +1,14 @@
+{
+    "include": [
+        {
+            "registry_name": "bank-banking-debito-automatico-api",
+            "chart_path": "chart/api/banking-debito-automatico-api",
+            "app": "api"
+        },
+        {
+            "registry_name": "bank-banking-debito-automatico-consumer",
+            "chart_path": "chart/worker/banking-debito-automatico-consumer",
+            "app": "consumer"
+        }
+    ]
+}
