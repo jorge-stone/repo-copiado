@@ -1,0 +1,29 @@
+name: Teste da Matrix
+run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${{ github.base_ref }} by @${{ github.actor }} - ${{ github.event.pull_request.title }}
+
+on:
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  setup-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}../
+      - id: set-matrix
+        run: cat buildfile.json >> $GITHUB_OUTPUT
+  build:
+    name: Build
+    needs: setup-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJSON(needs.setup-matrix.outputs.matrix) }}
+    steps:
+      - name: Teste Neo
+        run: |
+          echo "matrix registry_name > ${{ matrix.registry_name }}, chart_path > ${{ matrix.chart_path }}, app > ${{ matrix.app }}"

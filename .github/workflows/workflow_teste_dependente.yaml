@@ -1,0 +1,17 @@
+name: Teste Dependente 2
+run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${{ github.base_ref }} by @${{ github.actor }} - ${{ github.event.pull_request.title }}
+
+on:
+  workflow_run:
+    workflows: 
+      - workflow_teste_da_matrix.yaml
+    types:
+      - completed
+
+jobs:
+  triggado:
+    runs-on: ubuntu-latest
+    steps:
+      - id: print-success
+        run: | 
+          echo "SUCESSO! > ${{github.event}}"

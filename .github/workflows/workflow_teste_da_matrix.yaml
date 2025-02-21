@@ -1,0 +1,34 @@
+name: MatrixTest
+run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${{ github.base_ref }} by @${{ github.actor }} - ${{ github.event.pull_request.title }}
+
+on:
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  setup-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - id: set-matrix
+        run: | 
+          echo matrix=$(cat .github/workflows/buildfile.json) >> $GITHUB_OUTPUT
+
+  build:
+    needs: setup-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix: ${{ fromJSON(needs.setup-matrix.outputs.matrix) }}
+    name: Build ${{ matrix.app }}
+    steps:
+      - name: Teste Neo
+        run: |
+          echo "matrix registry_name > ${{ matrix.registry_name }}, chart_path > ${{ matrix.chart_path }}, app > ${{ matrix.app }}"
