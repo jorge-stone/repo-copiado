@@ -1,5 +1,4 @@
 name: Teste Dependente
-run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${{ github.base_ref }} by @${{ github.actor }} - ${{ github.event.pull_request.title }}
 
 on:
   workflow_run:

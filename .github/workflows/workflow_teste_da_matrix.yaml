@@ -1,5 +1,4 @@
 name: Teste da Matrix
-run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${{ github.base_ref }} by @${{ github.actor }} - ${{ github.event.pull_request.title }}
 
 on:
   pull_request:
@@ -22,11 +21,12 @@ jobs:
           echo matrix=$(cat buildfile.json) >> $GITHUB_OUTPUT
 
   build:
-    name: Build
     needs: setup-matrix
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: true
       matrix: ${{ fromJSON(needs.setup-matrix.outputs.matrix) }}
+    name: Build ${{ matrix.app }}
     steps:
       - name: Teste Neo
         run: |
