@@ -19,7 +19,7 @@ jobs:
 
       - id: set-matrix
         run: | 
-          echo matrix=$(cat buildfile.json | jq -c | jq -R) >> $GITHUB_OUTPUT
+          echo matrix=$(cat buildfile.json) >> $GITHUB_OUTPUT
 
   build:
     name: Build
