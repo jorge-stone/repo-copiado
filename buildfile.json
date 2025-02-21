@@ -9,6 +9,36 @@
             "registry_name": "bank-banking-debito-automatico-consumer",
             "chart_path": "chart/worker/banking-debito-automatico-consumer",
             "app": "consumer"
+        },
+        {
+            "app": "webhook",
+            "chart_path": "chart/api/debito-automatico-webhook-service",
+            "registry_name": "bank-debito-automatico-webhook-service"
+        },
+        {
+            "app": "sync-providers-cronjob",
+            "chart_path": "chart/cronjob/debito-automatico-sync-providers",
+            "registry_name": "bank-debito-automatico-sync-providers"
+        },
+        {
+            "app": "renew-access-token-cronjob",
+            "chart_path": "chart/cronjob/debito-automatico-renew-access-token",
+            "registry_name": "bank-debito-automatico-renew-access-token"
+        },
+        {
+            "app": "calculate-scheduled-for-cronjob",
+            "chart_path": "chart/app/cronjob/debito-automatico-calculate-scheduled-for",
+            "registry_name": "bank-debito-automatico-calculate-scheduled-for"
+        },
+        {
+            "app": "process-bill-schedules-cronjob",
+            "chart_path": "chart/app/cronjob/debito-automatico-process-bill-schedules",
+            "registry_name": "bank-debito-automatico-process-bill-schedules"
+        },
+        {
+            "app": "process-bill-schedules-external-transfer-cronjob",
+            "chart_path": "chart/cronjob/debito-automatico-process-external-transfer",
+            "registry_name": "bank-debito-automatico-process-external-transfer"
         }
     ]
 }
