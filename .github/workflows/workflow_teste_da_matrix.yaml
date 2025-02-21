@@ -1,0 +1,25 @@
+name: Teste da Matrix
+run-name: ${{ github.event_name }} ${{ github.event.pull_request.number }} to ${{ github.base_ref }} by @${{ github.actor }} - ${{ github.event.pull_request.title }}
+
+on:
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  build:
+    name: Build
+    runs-on: small-runner
+    strategy:
+      matrix:
+        include:
+          - registry_name: "bank-banking-debito-automatico-api"
+            chart_path: "chart/api/banking-debito-automatico-api"
+            app: "api"
+          - registry_name: "bank-banking-debito-automatico-consumer"
+            chart_path: "chart/worker/banking-debito-automatico-consumer"
+            app: "consumer"
+    steps:
+      - name: Teste Neo
+        run: |
+          echo "matrix registry_name > ${{ matrix.registry_name }}, chart_path > ${{ matrix.chart_path }}, app > ${{ matrix.app }}"
